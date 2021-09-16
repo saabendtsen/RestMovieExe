@@ -92,7 +92,7 @@ class MovieResourceTest {
     @Test
     public void testServerIsUp() {
         System.out.println("Testing is server UP");
-        given().when().get("/movies").then().statusCode(200);
+        given().when().get("/xxx").then().statusCode(200);
     }
 
 
@@ -105,6 +105,5 @@ class MovieResourceTest {
                 .statusCode(HttpStatus.OK_200.getStatusCode())
                 .body("all", hasSize(2));
     }
-
 
 }
