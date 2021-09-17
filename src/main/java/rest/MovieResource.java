@@ -7,9 +7,9 @@ import facades.MovieFacade;
 import utils.EMF_Creator;
 
 import javax.persistence.EntityManagerFactory;
-import javax.ws.rs.GET;
-import javax.ws.rs.Path;
-import javax.ws.rs.Produces;
+import javax.persistence.PostLoad;
+import javax.ws.rs.*;
+import javax.ws.rs.core.MediaType;
 import java.util.List;
 
 @Path("/movie")
@@ -22,7 +22,7 @@ public class MovieResource {
 
 
     @GET
-    @Produces("text/plain")
+    @Produces({MediaType.APPLICATION_JSON})
     public String hello() {
         return "Movie, shit";
     }
@@ -39,5 +39,12 @@ public class MovieResource {
 
     }
 
+    @Path("/{id}")
+    @GET
+    @Produces("application/json")
+    public String getMovieById(@PathParam("id") int id ){
+        MovieDTO res = FACADE.getMovieByID(id);
+        return new Gson().toJson(res);
+    }
 
 }

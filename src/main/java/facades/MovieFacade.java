@@ -53,10 +53,15 @@ public class MovieFacade {
     }
 
 
+    public MovieDTO getMovieByID(int id) {
+        EntityManager em = emf.createEntityManager();
+        TypedQuery<Movie> query = em.createQuery("SELECT m FROM Movie m WHERE m.id =:id",Movie.class);
+        query.setParameter("id", id);
+        Movie movie = query.getSingleResult();
 
+       return new MovieDTO(movie);
 
-
-
+    }
 }
 
 

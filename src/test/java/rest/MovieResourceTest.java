@@ -92,7 +92,7 @@ class MovieResourceTest {
     @Test
     public void testServerIsUp() {
         System.out.println("Testing is server UP");
-        given().when().get("/xxx").then().statusCode(200);
+        given().when().get("/movie").then().statusCode(200);
     }
 
 
@@ -104,6 +104,18 @@ class MovieResourceTest {
                 .assertThat()
                 .statusCode(HttpStatus.OK_200.getStatusCode())
                 .body("all", hasSize(2));
+    }
+
+
+    @Test
+    public void testMovieId(){
+        given()
+                .contentType("application/json")
+                .get("/movie/1").then()
+                .assertThat().statusCode(HttpStatus.OK_200.getStatusCode())
+                .body("id",equalTo(1));
+
+
     }
 
 }
